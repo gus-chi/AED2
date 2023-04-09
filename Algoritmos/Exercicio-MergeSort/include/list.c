@@ -74,13 +74,14 @@ Node* Merge(Node* left, Node* right){
 
     return new_head; // retorna um provável novo endereço de no que a head da lista irá apontar
 }
-void MergeSort(Node* head){
+Node* MergeSort(Node* head){
     if(head->next == NULL)
-        return;
+        return head;
     Node *left_head, *right_head;
     left_head = right_head = NULL;
     DivideList(head, &left_head, &right_head);
-    MergeSort(left_head);
-    MergeSort(right_head);
+    left_head = MergeSort(left_head);
+    right_head = MergeSort(right_head);
     head = Merge(left_head, right_head);
+    return head;
 }

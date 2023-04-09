@@ -20,4 +20,4 @@ void PushTail(List*, Node*); //Adiciona elemento no final da lista
 void PrintList(List);
 void DivideList(Node*, Node**, Node**);
 Node* Merge(Node*, Node*);
-void MergeSort(Node*);
+Node* MergeSort(Node*);

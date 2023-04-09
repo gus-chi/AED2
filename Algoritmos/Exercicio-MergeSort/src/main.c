@@ -5,7 +5,7 @@
 int main(void){
     List *list = InstantiateList(); // Instantiatelist
     Node* new_node = NULL;
-    int i, n, valor;
+    int i, n, valor, *cont_recursives; // ponteiro que é incrementado a cada vez que ocorre uma recursividade da função MergeSort
     scanf("%d", &n);
     for( i = 0; i < n; i++){
         scanf("%d", &valor);
@@ -13,7 +13,7 @@ int main(void){
         PushTail(list, new_node);
     }
     PrintList(*list);
-    MergeSort(list->head);
+    list->head = MergeSort(list->head);
     PrintList(*list);
     return 0;
 }
