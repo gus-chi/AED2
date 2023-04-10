@@ -1,4 +1,47 @@
-#include "list.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node Node;
+typedef struct List List;
+
+struct Node{
+    int value;
+    struct Node* next;
+};
+struct List{
+    struct Node* head;
+};
+
+Node* InstantiateNode(int);
+void PrintNode(Node);
+
+List* InstantiateList(void);
+void PushTail(List*, Node*); //Adiciona elemento no final da lista
+void PrintList(List);
+void DivideList(Node*, Node**, Node**);
+Node* Merge(Node*, Node*);
+Node* MergeSort(Node*, int*);
+void DestroyList(Node**);
+
+
+int main(void){
+    List *list = InstantiateList(); // Instantiatelist
+    Node* new_node = NULL;
+    int i, n, valor, cont_recursives; // ponteiro que é incrementado a cada vez que ocorre uma recursividade da função MergeSort
+    cont_recursives = 0;
+    scanf("%d", &n);
+    for( i = 0; i < n; i++){
+        scanf("%d", &valor);
+        new_node = InstantiateNode(valor);
+        PushTail(list, new_node);
+    }
+    //PrintList(*list); 
+    list->head = MergeSort(list->head, &cont_recursives);
+    PrintList(*list);
+    printf("\n%d", cont_recursives);
+    DestroyList(&list->head);
+    return 0;
+}
 
 Node* InstantiateNode(int value){
     Node *new_node = malloc(sizeof *new_node);
