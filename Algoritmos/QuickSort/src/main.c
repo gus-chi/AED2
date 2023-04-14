@@ -4,7 +4,7 @@
 
 void PrintArray(int*, int);
 int main(void){
-    int *array, *array_copy, n, i, value, diference_recursions;
+    int *array, *array_copy, n, i, value, min_height = 0;
     scanf("%d", &n);
     array = malloc(n * sizeof *array);
     array_copy = malloc(n * sizeof *array_copy);
@@ -13,11 +13,11 @@ int main(void){
         scanf("%d", &value);
         array_copy[i] = array[i] = value; 
         }
-    PrintArray(array, n);
+    //PrintArray(array, n);
     printf("\n");
-    diference_recursions = DefaultQuickSort(array, 0, n-1);
-    PrintArray(array, n);
-    printf("\n%d", diference_recursions);
+    int max_height = DefaultQuickSort(array, 0, n-1, &min_height); // Retorna a altura/tamanho máxima(o) da recursão
+    //printf("%d", max_height);
+    //PrintArray(array, n);
 
     return 0;
 }
