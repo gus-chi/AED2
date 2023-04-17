@@ -1,5 +1,48 @@
-#include "quick-sort.h"
+#include <stdio.h>
+#include <stdlib.h>
 
+void swap(int*, int, int);
+int MedianOfThree(int *, int, int);
+int* OptimizedQuickSort(int*, int, int);
+int* DefaultQuickSort(int*, int, int);
+int Partition(int*, int, int);
+int OptimizedPartition(int*, int, int);
+int PartitionOptimized(int*, int, int);
+
+void PrintArray(int*, int);
+int main(void){
+    int *array, *array_copy,*array_max_min, n, i, value, min_height = 0;
+    scanf("%d", &n);
+    array = malloc(n * sizeof *array);
+    array_copy = malloc(n * sizeof *array_copy);
+
+    for(i=0; i < n; i++){
+        scanf("%d", &value);
+        array_copy[i] = array[i] = value; 
+        }
+    array_max_min = DefaultQuickSort(array, 0, n-1); // Retorna a altura/tamanho máxima(o) da recursão
+    //PrintArray(array, n);
+    //printf("max: %d min: %d\n", array_max_min[0], array_max_min[1]);
+    printf("%d", array_max_min[0] - array_max_min[1]);
+    printf("\n");
+    free(array_max_min);
+    free(array);
+    array_max_min = OptimizedQuickSort(array_copy, 0, n-1); 
+    //PrintArray(array_copy, n);
+    //printf("max: %d min: %d\n", array_max_min[0], array_max_min[1]);
+    printf("%d", array_max_min[0] - array_max_min[1]);
+    free(array_max_min);
+    free(array_copy);
+    //printf("%d", max_height);
+    //PrintArray(array, n);
+
+    return 0;
+}
+void PrintArray(int* array, int size){
+    int i;
+    for(i=0; i<size; i++)
+        printf("%d ", array[i]);
+}
 void swap(int* array, int index_x, int index_y){ // Troca as keys dos índices do array
     int aux = array[index_x];
     array[index_x] = array[index_y];
